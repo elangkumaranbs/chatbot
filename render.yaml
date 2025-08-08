@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: flutter-chatbot
+    env: static
+    staticPublishPath: ./build/web
+    buildCommand: |
+      # Install Flutter
+      git clone https://github.com/flutter/flutter.git -b stable /opt/flutter
+      export PATH="$PATH:/opt/flutter/bin"
+      
+      # Flutter doctor and setup
+      flutter doctor
+      flutter config --enable-web
+      
+      # Get dependencies and build
+      flutter pub get
+      flutter build web --release
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
