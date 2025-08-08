@@ -298,20 +298,6 @@ class GeminiService {
     return recent;
   }
 
-  // Enhanced system prompt for Gemini 2.0 Flash
-  String _getSystemPrompt() {
-    return '''You are a helpful AI assistant powered by Gemini 2.0 Flash. You have advanced capabilities including:
-    
-- Natural conversation and reasoning
-- Image analysis and text extraction with high accuracy
-- Code understanding and generation
-- Mathematical problem solving
-- Creative writing and content generation
-- Multi-language support
-
-Please provide helpful, accurate, and engaging responses. When analyzing images, be detailed and precise. When extracting text from images, maintain formatting and accuracy.''';
-  }
-
   Future<String> _makeApiRequest(
     List<Map<String, dynamic>> messages,
     String apiUrl, {

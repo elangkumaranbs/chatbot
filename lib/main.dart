@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'providers/chat_provider.dart';
-import 'screens/simple_chat_screen.dart';
+import 'screens/chat_screen_with_sidebar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -65,7 +64,7 @@ class MyApp extends StatelessWidget {
           cardColor: const Color(0xFF1A1A1A),
         ),
         themeMode: ThemeMode.dark, // Force dark theme
-        home: const ChatScreen(),
+        home: const ChatScreenWithSidebar(),
         debugShowCheckedModeBanner: false,
       ),
     );
