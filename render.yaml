@@ -4,15 +4,19 @@ services:
     env: static
     staticPublishPath: ./build/web
     buildCommand: |
-      # Install Flutter
-      git clone https://github.com/flutter/flutter.git -b stable /opt/flutter
-      export PATH="$PATH:/opt/flutter/bin"
+      # Download and install Flutter
+      export FLUTTER_HOME="$HOME/flutter"
+      if [ ! -d "$FLUTTER_HOME" ]; then
+        curl -L https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.32.2-stable.tar.xz | tar -xJ -C $HOME
+      fi
+      export PATH="$PATH:$FLUTTER_HOME/bin"
       
-      # Flutter doctor and setup
-      flutter doctor
-      flutter config --enable-web
+      # Configure Flutter
+      flutter config --enable-web --no-analytics
+      flutter doctor --android-licenses || true
       
-      # Get dependencies and build
+      # Build the app
+      flutter clean
       flutter pub get
       flutter build web --release
     routes:
